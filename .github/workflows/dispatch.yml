@@ -8,10 +8,10 @@ on:
 
 jobs:
   inter_jobs:
+    if: github.event.client_payload.text
     runs-on: ubuntu-latest
     steps:
     - name: Check event
-      if: github.event.client_payload.text
       run: |
         echo "Event text: ${{ github.event.client_payload.text }}"
         if [ ${{ github.event.client_payload.text }} == "success" ]
