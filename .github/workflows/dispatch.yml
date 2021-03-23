@@ -14,5 +14,6 @@ jobs:
       - name: Check event
         run: |
           echo 'Hello'
-          echo {github.event.event_type}
+          echo ${{github.event.event_type}}
+          echo "Event text: ${{ github.event.client_payload.text }}"
           echo 0
