@@ -4,7 +4,7 @@ on:
   repository_dispatch:
     types: [ test_result ]
   schedule:
-    - cron:  '*/5 * * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   inter_jobs:
