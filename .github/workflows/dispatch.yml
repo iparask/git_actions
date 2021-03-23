@@ -10,21 +10,29 @@ jobs:
   inter_jobs:
     runs-on: ubuntu-latest
     steps:
-      - name: Check event
-        if: github.event.client_payload.text
-        run: |
-          echo "Event text: ${{ github.event.client_payload.text }}"
-          if [ ${{ github.event.client_payload.text }} == "success" ]
-          then
-              echo "Success"
-              echo 0
-          else
-              echo "Failure"
-              false
-          fi
+    - name: Check event
+      if: github.event.client_payload.text
+      run: |
+        echo "Event text: ${{ github.event.client_payload.text }}"
+        if [ ${{ github.event.client_payload.text }} == "success" ]
+        then
+            echo "Success"
+            echo 0
+        else
+            echo "Failure"
+            false
+        fi
   periodic_jobs:
+    if: github.event.client_payload.text == null
     runs-on: ubuntu-latest
     steps:
-      - name: Cron
-        run: |
-          echo 'Hello'
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 2
+    - name: Set up Python 3.6
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.6.13
+    - name: Cron
+      run: |
+        python tester.py
