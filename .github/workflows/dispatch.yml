@@ -3,12 +3,15 @@ name: Summit Integration Test
 on:
   repository_dispatch:
     types: [ test_result ]
+  schedule:
+    - cron:  '*/5 * * * *'
 
 jobs:
   inter_jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check event
+        if: github.event.client_payload.text
         run: |
           echo "Event text: ${{ github.event.client_payload.text }}"
           if [ ${{ github.event.client_payload.text }} == "success" ]
@@ -19,3 +22,9 @@ jobs:
               echo "Failure"
               false
           fi
+  periodic_jobs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cron
+        run: |
+          echo 'Hello'
