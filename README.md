@@ -1,1 +1,1 @@
-![Summit Integration](https://github.com/iparask/git_actions/actions/workflows/dispatch/badge.svg)
+[![Summit Integration Test](https://github.com/iparask/git_actions/actions/workflows/dispatch.yml/badge.svg)](https://github.com/iparask/git_actions/actions/workflows/dispatch.yml)
