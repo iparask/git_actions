@@ -11,11 +11,11 @@ jobs:
       - name: Check event
         run: |
           echo "Event text: ${{ github.event.client_payload.text }}"
-          if [ "$MYAPP_ENV" == "PROD" ]
+          if [ ${{ github.event.client_payload.text }} == "PROD" ]
           then
               echo "Success"
               echo 0
           else
               echo "Failure"
-              echo 1
+              false
           fi
