@@ -3,8 +3,8 @@ name: Summit Integration Test
 on:
   repository_dispatch:
     types: [ test_result ]
-  schedule:
-    - cron: '0 0 * * 2'
+#  schedule:
+#    - cron: '0 0 * * 2'
 
 jobs:
   inter_jobs:
